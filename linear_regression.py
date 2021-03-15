@@ -9,7 +9,9 @@ data = pd.read_csv("FuelConsumptionCo2.csv")
 data.head()
 
 # Let’s select some features to explore more :
-data = data[["ENGINESIZE”,”CO2EMISSIONS"]]# ENGINESIZE vs CO2EMISSIONS:
+data = data[["ENGINESIZE”,”CO2EMISSIONS"]]
+
+# ENGINESIZE vs CO2EMISSIONS:
 plt.scatter(data["ENGINESIZE"] , data["CO2EMISSIONS"] , color="blue")
 plt.xlabel("ENGINESIZE")
 plt.ylabel("CO2EMISSIONS")
@@ -29,7 +31,9 @@ regr.fit(train_x,train_y)
 
 # The coefficients:
 print ("coefficients : ",regr.coef_) #Slope
-print ("Intercept : ",regr.intercept_) #Intercept# Plotting the regression line:
+print ("Intercept : ",regr.intercept_) #Intercept
+
+# Plotting the regression line:
 plt.scatter(train["ENGINESIZE"], train["CO2EMISSIONS"], color='blue')
 plt.plot(train_x, regr.coef_*train_x + regr.intercept_, '-r')
 plt.xlabel("Engine size")

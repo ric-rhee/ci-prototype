@@ -12,9 +12,10 @@ jobs:
         username: rheer
         password: 8rnyPU16ce
         script: |
+          rm -r testing
           cd
-          ls -a
           mkdir testing
           cd testing
           git clone git@github.com:ric-rhee/ci-prototype.git
           ls -a
+          cd
