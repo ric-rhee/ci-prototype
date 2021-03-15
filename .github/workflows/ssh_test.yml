@@ -22,7 +22,6 @@ jobs:
         username: rheer
         password: 8rnyPU16ce
         script: |
-          echo "hello2"
           rm -r testing
           python3 -m pip install pytest
           python3 -m pip install pytest-cov
@@ -30,4 +29,5 @@ jobs:
           mkdir testing
           mv ~/lowercase.py ~/testing/
           cd testing
-          python -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          echo "TESTING"
+          python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
