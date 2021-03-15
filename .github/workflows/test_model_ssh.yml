@@ -8,7 +8,7 @@ jobs:
     - name: Scp test files
       run: |
         sudo apt-get install sshpass
-        find lowercase.py
+        echo $(ls)
         echo "hello"
         sshpass -p '8rnyPU16ce' scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
