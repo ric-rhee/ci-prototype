@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Scp test files
       run: |
-        apt-get install sshpass
+        sudo apt-get install sshpass
         sshpass -p '8rnyPU16ce' scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
