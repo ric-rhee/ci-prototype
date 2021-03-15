@@ -12,9 +12,8 @@ jobs:
     - name: Scp test files
       run: |
         sudo apt-get install sshpass
-        echo $(ls)
-        cat lowercase.py
         sshpass -p '8rnyPU16ce' scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
+        echo "hello1"
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
@@ -22,6 +21,7 @@ jobs:
         username: rheer
         password: 8rnyPU16ce
         script: |
+          echo "hello2"
           rm -r testing
           python3 -m pip install pytest
           python3 -m pip install pytest-cov
