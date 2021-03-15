@@ -30,6 +30,6 @@ jobs:
           python3 -m pip install pytest-cov
           cd
           mkdir testing
-          cd testing
           mv ~/lowercase.py ~/testing/
-          pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          cd testing
+          python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
