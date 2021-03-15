@@ -14,13 +14,11 @@ jobs:
         sudo apt-get install sshpass
         sshpass -p '8rnyPU16ce' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
         ls
-    - name: Scp test files
-      run: |
-        echo "hello1"
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
-        host: ecegrid.ecn.purdue.edu
+        #host: ecegrid.ecn.purdue.edu
+        host: ee220clnx1.ecn.purdue.edu
         username: rheer
         password: 8rnyPU16ce
         script: |
@@ -32,4 +30,4 @@ jobs:
           mkdir testing
           mv ~/lowercase.py ~/testing/
           cd testing
-          python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          python -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
