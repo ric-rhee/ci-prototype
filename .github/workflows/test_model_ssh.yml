@@ -1,2 +1,16 @@
 name: test model with ssh
 on: [pull_request]
+jobs:
+  build:
+    name: Test ssh
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ecegrid.ecn.purdue.edu
+        username: rheer
+        password: 8rnyPU16ce
+        script: |
+          cd
+          ls -a
