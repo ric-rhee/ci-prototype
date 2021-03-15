@@ -16,7 +16,7 @@ jobs:
         user: rheer
         pass: 8rnyPU16ce
         run: |
-          scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
+          sudo scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
           ls
     - name: Scp test files
       run: |
