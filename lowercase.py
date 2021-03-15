@@ -10,4 +10,4 @@ def test_convert_to_lower():
         if ch.islower():
             pass
         else:
-            assert 5
+            assert 0
