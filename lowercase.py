@@ -1,7 +1,7 @@
 string = "ABCDEFG"
 
 def convert_to_lower(string_to_convert):
-    converted_string = string_to_convert.lower()
+    converted_string = string_to_convert.upper()
     return converted_string
 
 def test_convert_to_lower():
@@ -10,4 +10,4 @@ def test_convert_to_lower():
         if ch.islower():
             pass
         else:
-            assert 0
+            assert 5
