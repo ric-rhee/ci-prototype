@@ -1,11 +1,14 @@
-name: test model with ssh
-on: [pull_request]
+name: Test model with ssh
+on: [push]
 jobs:
   build:
     name: Test ssh
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: Scp test files
+      run: |
+        scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
+    - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
         host: ecegrid.ecn.purdue.edu
@@ -13,9 +16,10 @@ jobs:
         password: 8rnyPU16ce
         script: |
           rm -r testing
+          python3 -m pip install pytest
+          python3 -m pip install pytest-cov
           cd
           mkdir testing
           cd testing
-          git clone git@github.com:ric-rhee/ci-prototype.git
-          ls -a
-          cd
+          mv ~/lowercase.py ~/testing/
+          pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
