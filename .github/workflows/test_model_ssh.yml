@@ -17,6 +17,7 @@ jobs:
         pass: 8rnyPU16ce
         run: |
           sshpass -p '8rnyPU16ce' scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
+          ls
     - name: Scp test files
       run: |
         echo "hello1"
