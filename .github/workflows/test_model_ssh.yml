@@ -5,6 +5,10 @@ jobs:
     name: Test ssh
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
     - name: Scp test files
       run: |
         sudo apt-get install sshpass
