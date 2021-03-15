@@ -9,7 +9,7 @@ jobs:
       run: |
         sudo apt-get install sshpass
         echo $(ls)
-        echo "hello"
+        cat lowercase.py
         sshpass -p '8rnyPU16ce' scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
