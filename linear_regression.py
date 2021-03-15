@@ -30,7 +30,7 @@ regr.fit(train_x,train_y)
 # The coefficients:
 print ("coefficients : ",regr.coef_) #Slope
 print ("Intercept : ",regr.intercept_) #Intercept# Plotting the regression line:
-plt.scatter(train["ENGINESIZE"], train[“CO2EMISSIONS”], color='blue')
+plt.scatter(train["ENGINESIZE"], train["CO2EMISSIONS"], color='blue')
 plt.plot(train_x, regr.coef_*train_x + regr.intercept_, '-r')
 plt.xlabel("Engine size")
 plt.ylabel("Emission")
@@ -50,7 +50,8 @@ print ("Estimated Emission :",estimatd_emission)
 from sklearn.metrics import r2_score
 test_x = np.array(test[['ENGINESIZE']])
 test_y = np.array(test[['CO2EMISSIONS']])
-test_y_ = regr.predict(test_x)print("Mean absolute error: %.2f" % np.mean(np.absolute(test_y_ — test_y)))
+test_y_ = regr.predict(test_x)
+print("Mean absolute error: %.2f" % np.mean(np.absolute(test_y_ — test_y)))
 print("Mean sum of squares (MSE): %.2f" % np.mean((test_y_ — test_y) ** 2))
 print("R2-score: %.2f" % r2_score(test_y_ , test_y) )
 
