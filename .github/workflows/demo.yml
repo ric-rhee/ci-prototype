@@ -27,10 +27,5 @@ jobs:
           mkdir testing
           mv ~/tf-models ~/testing/
           cd testing
-          python3 -m pip install --upgrade pip
-          python3 -m pip install -r tf-models/official/requirements.txt
-          python3 -m pip install pytest
-          python3 -m pip install pytest-cov
-          python3 -m pip install tensorflow
           cd tf-models
           python3 -m official.vision.beta.projects.yolo.ops.box_ops_test
