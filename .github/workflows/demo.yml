@@ -14,7 +14,7 @@ jobs:
         sudo apt-get install sshpass
         ls
         pwd
-        sshpass -p 'Master@123' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tf-models achinnak@ecegrid.ecn.purdue.edu:~/
+        sshpass -p 'Master@123' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r tf-models achinnak@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
