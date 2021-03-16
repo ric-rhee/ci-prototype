@@ -12,14 +12,14 @@ jobs:
     - name: Scp
       run: |
         sudo apt-get install sshpass
-        sshpass -p '8rnyPU16ce' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py rheer@ee220clnx1.ecn.purdue.edu:~/
+        sshpass -p 'PASSWORD' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py USERNAME@ee220clnx1.ecn.purdue.edu:~/
         ls
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
         host: ee220clnx1.ecn.purdue.edu
-        username: rheer
-        password: 8rnyPU16ce
+        username: USERNAME
+        password: PASSWORD
         script: |
           rm -r testing
           python3 -m pip install pytest
