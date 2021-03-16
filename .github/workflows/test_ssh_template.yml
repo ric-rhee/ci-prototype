@@ -9,31 +9,22 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    - name: Run sshpass commands
-      uses: matheusvanzan/sshpass-action@v2
-      with:
-        host: ecegrid.ecn.purdue.edu
-        user: rheer
-        pass: 8rnyPU16ce
-        run: |
-          sudo scp lowercase.py rheer@ecegrid.ecn.purdue.edu:~/
-          ls
-    - name: Scp test files
+    - name: Scp
       run: |
-        echo "hello1"
-    - name: Executing remote ssh commands using password
+        sudo apt-get install sshpass
+        sshpass -p '<insert password>' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py <insert username>@ecegrid.ecn.purdue.edu:~/
+    - name: Testcase 1
       uses: appleboy/ssh-action@master
       with:
         host: ecegrid.ecn.purdue.edu
-        username: rheer
-        password: 8rnyPU16ce
+        username: <insert username>
+        password: <insert password>
         script: |
-          echo "hello2"
           rm -r testing
           python3 -m pip install pytest
           python3 -m pip install pytest-cov
           cd
           mkdir testing
-          cd testing
           mv ~/lowercase.py ~/testing/
-          pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          cd testing
+          python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
