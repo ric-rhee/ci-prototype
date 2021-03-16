@@ -1,5 +1,5 @@
 name: Demo with ssh
-on: [push]
+on: [pull_request]
 jobs:
   build:
     name: Test ssh
@@ -14,13 +14,13 @@ jobs:
         sudo apt-get install sshpass
         ls
         pwd
-        sshpass -p 'Master@123' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r tf-models achinnak@ecegrid.ecn.purdue.edu:~/
+        sshpass -p '' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r tf-models achinnak@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
         host: ecegrid.ecn.purdue.edu
         username: achinnak
-        password: Master@123
+        password: .
         script: |
           rm -r testing
           cd
