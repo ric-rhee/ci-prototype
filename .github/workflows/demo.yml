@@ -1,5 +1,5 @@
 name: Demo with ssh
-on: [pull_request]
+on: [push]
 jobs:
   build:
     name: Test ssh
