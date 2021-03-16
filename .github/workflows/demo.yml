@@ -1,0 +1,37 @@
+name: Demo with ssh
+on: [pull_request]
+jobs:
+  build:
+    name: Test ssh
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Scp
+      run: |
+        sudo apt-get install sshpass
+        sshpass -p '' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /tf-models @ecegrid.ecn.purdue.edu:~/
+        ls
+    - name: Executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ecegrid.ecn.purdue.edu
+        username:
+        password:
+        script: |
+          rm -r testing
+          cd
+          mkdir testing
+          mv ~/tf-models ~/testing/
+          cd testing
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r tf-models/official/requirements.txt
+          python3 -m pip install pytest
+          python3 -m pip install pytest-cov
+          python3 -m pip install tensorflow
+          python3 -m pip uninstall -y numpy
+          python3 -m pip install numpy
+          cd tf-models
+          python3 -m official.vision.beta.projects.yolo.ops.box_ops_test
