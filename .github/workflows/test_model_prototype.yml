@@ -16,7 +16,7 @@ jobs:
         pip install pytest
         pip install pytest-cov
         pip install tensorflow
-        pip uninstall numpy
+        pip uninstall -y numpy
         pip install numpy
 
     - name: Test sample with pytest
