@@ -13,7 +13,7 @@ jobs:
       run: |
         sudo apt-get install sshpass
         sshpass -p 'Master@123' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py achinnak@ecegrid.ecn.purdue.edu:~/
-    - name: Executing remote ssh commands using password
+    - name: Testcase 1
       uses: appleboy/ssh-action@master
       with:
         host: ecegrid.ecn.purdue.edu
