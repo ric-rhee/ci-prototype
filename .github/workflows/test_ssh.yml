@@ -1,5 +1,5 @@
 name: Test model with ssh
-on: [pull_request]
+on: [push]
 jobs:
   build:
     name: Test ssh
@@ -12,14 +12,13 @@ jobs:
     - name: Scp
       run: |
         sudo apt-get install sshpass
-        sshpass -p '' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py @ecegrid.ecn.purdue.edu:~/
-        ls
+        sshpass -p 'Master@123' scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null lowercase.py achinnak@ecegrid.ecn.purdue.edu:~/
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
         host: ecegrid.ecn.purdue.edu
-        username:
-        password:
+        username: achinnak
+        password: Master@123
         script: |
           rm -r testing
           python3 -m pip install pytest
@@ -28,6 +27,4 @@ jobs:
           mkdir testing
           mv ~/lowercase.py ~/testing/
           cd testing
-          ls -a
-          echo "TESTING"
           python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
