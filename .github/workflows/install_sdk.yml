@@ -12,4 +12,5 @@ jobs:
     - name: Install Google Cloud SDK
       run: |
       curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
+      sudo apt-get install -y tar
       tar -C ~/ -zxvf google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
