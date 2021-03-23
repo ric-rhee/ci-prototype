@@ -1,4 +1,4 @@
-name: Install Google Cloud SDK
+name: Start/Stop VM using gloud CLI
 on: [push]
 jobs:
   build:
@@ -16,11 +16,7 @@ jobs:
         project_id: ${{ secrets.PROJECT_NAME }}
         service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
 
-#    - name: Install Google Cloud SDK
-#      run: |
-#        curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
-#        tar -C ~/ -zxvf google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
-#        gcloud auth activate-service-account --key-file ${{ secrets.SERVICE_ACCOUNT }}
-#        ./google-cloud-sdk/bin/gcloud init --console-only --no-launch-browser
-#        gcloud compute instances start
-#        gcloud compute instances stop
+    - name: Start instace
+      run: |
+        gcloud compute instances start ${{ secrets.PROJECT_NAME }}
+        gcloud compute instances stop ${{ secrets.PROJECT_NAME }}
