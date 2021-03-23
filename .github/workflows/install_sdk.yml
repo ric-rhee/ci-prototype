@@ -18,7 +18,7 @@ jobs:
 
     - name: Start instace
       run: |
-        gcloud projects list --sort-by=projectId --limit=5
+        gcloud compute instances list
         gcloud compute regions list
         gcloud compute zones list
         gcloud config get-value compute/region
