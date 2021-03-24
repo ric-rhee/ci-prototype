@@ -19,9 +19,9 @@ jobs:
     - name: Start instace
       run: |
         gcloud compute instances list
-        gcloud compute instances start ${{ secrets.INSTANCE_NAME }}
+        gcloud compute instances start ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
         gcloud compute instances list
-        gcloud compute instances stop ${{ secrets.INSTANCE_NAME }}
+        gcloud compute instances stop ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
         gcloud compute instances list
 #        gcloud config get-value compute/region
 #        gcloud config get-value compute/zone
