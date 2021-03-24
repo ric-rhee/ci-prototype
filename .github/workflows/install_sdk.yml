@@ -19,9 +19,5 @@ jobs:
     - name: Start instace
       run: |
         gcloud compute instances list
-        gcloud compute regions list
-        gcloud compute zones list
-        gcloud config get-value compute/region
-        gcloud config get-value compute/zone
-        gcloud compute instances start ${{ secrets.PROJECT_NAME }}
-        gcloud compute instances stop ${{ secrets.PROJECT_NAME }}
+#        gcloud compute instances start ${{ secrets.INSTANCE_NAME }}
+#        gcloud compute instances stop ${{ secrets.INSTANCE_NAME }}

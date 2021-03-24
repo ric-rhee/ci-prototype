@@ -15,5 +15,7 @@ jobs:
       with:
         host: ${{ secrets.VM_HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
+        key: ${{ secrets.VM_PRIVATE_KEY }}
+        fingerprint: ${{ secrets.VM_FINGERPRINT }}
+      script: |
+      
