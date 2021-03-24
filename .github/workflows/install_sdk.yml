@@ -13,7 +13,7 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
-        project_id: ${{ secrets.PROJECT_NAME }}
+        project_id: ${{ secrets.PROJECT_ID }}
         service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
 
     - name: Start instace
