@@ -14,7 +14,7 @@ class InputUtilsTest(parameterized.TestCase, tf.test.TestCase):
     xywh_box = box_ops.yxyx_to_xcycwh(boxes)
     yxyx_box = box_ops.xcycwh_to_yxyx(boxes)
     xyxy_box = box_ops.xcycwh_to_xyxy(boxes)
-    self.assertAllEqual(tf.constant(1), tf.constant(0))
+    self.assertAllEqual(tf.constant(1), tf.constant(1))
     self.assertAllEqual(tf.shape(xywh_box).numpy(), expected_shape)
     self.assertAllEqual(tf.shape(yxyx_box).numpy(), expected_shape)
     self.assertAllEqual(tf.shape(xyxy_box).numpy(), expected_shape)
