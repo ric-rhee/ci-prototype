@@ -17,6 +17,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.VM_PRIVATE_KEY }}
         fingerprint: ${{ secrets.VM_FINGERPRINT }}
-      script: |
-        ls
-        echo HELLO WORLD
+        script: |
+          ls
+          echo HELLO WORLD
