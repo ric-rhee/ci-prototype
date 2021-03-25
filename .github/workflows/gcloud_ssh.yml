@@ -19,7 +19,7 @@ jobs:
     - name: Start instace
       run: |
         pwd
-        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="nvidia-smi"
+        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="nvcc -v"
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="mkdir ~/testing"
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pytest lowercase.py"
