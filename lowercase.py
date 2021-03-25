@@ -5,4 +5,3 @@ def convert_to_lower(string_to_convert):
 
 def test_convert_to_lower():
     assert all(97 <= ASCII <= 122 for ASCII in [ord(ele) for ele in string.lower()])
-
