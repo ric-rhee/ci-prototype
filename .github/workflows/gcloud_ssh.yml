@@ -22,7 +22,7 @@ jobs:
       run: |
         BRANCH_NAME=$(echo ${GITHUB_REF##*/})
         echo ${BRANCH_NAME}
-        echo ${GITHUB_REF}
+        echo ${{ github.repository.name }}
 
     - name: Start instace
       run: |
@@ -31,6 +31,7 @@ jobs:
 
     - name: Run tests
       run: |
+        
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing && ls"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing/tf-models"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
