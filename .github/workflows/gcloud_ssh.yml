@@ -18,9 +18,11 @@ jobs:
 
     - name: Start instace
       run: |
-        [ -d "/home/chinna/Projects/ci-prototype" ] && echo "Directory ~/.ssh exists."
-        mv id_rsa ~/.ssh
-        mv id_rsa.pub ~/.ssh
+#        [ -d "/home/chinna/Projects/ci-prototype" ] && echo "Directory ~/.ssh exists."
+#        mv id_rsa ~/.ssh
+#        mv id_rsa.pub ~/.ssh
+        rm -rf ~/.ssh/id_rsa
+        rm -rf ~/.ssh/id_rsa.pub
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
