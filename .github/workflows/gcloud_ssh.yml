@@ -20,7 +20,7 @@ jobs:
       run: |
         gcloud compute instances list
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="ls"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="mkdir ~/testing && ls"
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- rm -rf testing && mkdir hey && ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
