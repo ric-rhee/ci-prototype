@@ -16,14 +16,13 @@ jobs:
         project_id: ${{ secrets.PROJECT_ID }}
         service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
 
-    - name: Extract branch name
+    - name: Extract branch/repo name
       shell: bash
       id: vars
       run: |
         BRANCH_NAME=$(echo ${GITHUB_REF##*/})
-        echo ${BRANCH_NAME}
-        echo ${{ github.event.repository.name }}
-        pwd
+        REPO_NAME=${{ github.event.repository.name }}
+        echo ${GITHUB_REPOSITORY}
 
     - name: Start instace
       run: |
@@ -32,8 +31,9 @@ jobs:
 
     - name: Run tests
       run: |
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing && ls"
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing/tf-models"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing && cd ~/testing"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="git clone https://github.com/${GITHUB_REPOSITORY}"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ${REPO_NAME}/tf-models"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
 
 #        gcloud compute scp --recurse tf-models cam2tensorflow@${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
