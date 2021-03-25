@@ -1,2 +1,37 @@
 name: Complete workflow demo
-on: [pull_request]
+on: [push]
+
+jobs:
+  build:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ secrets.PROJECT_ID }}
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
+
+    - name: Start instace
+      run: |
+        gcloud compute instances list
+        gcloud compute instances start ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
+
+    - name: Run tests
+      run: |
+        BRANCH_NAME=$(echo ${GITHUB_REF##*/})
+        REPO_NAME=$(echo ${{ github.event.repository.name }})
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && git clone git://github.com/${GITHUB_REPOSITORY}.git && ls"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing/${REPO_NAME}/tf-models && python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
+
+    - name: Stop instace
+      run: |
+        gcloud compute instances list
+        gcloud compute instances stop ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
+        gcloud compute instances list
