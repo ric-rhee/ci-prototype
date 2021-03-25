@@ -18,9 +18,8 @@ jobs:
 
     - name: Start instace
       run: |
-        [ -d "~/.ssh" ] && echo "Directory ~/.ssh exists."
-        mv google_compute_engine ~/.ssh
-        mv google_compute_engine.pub ~/.ssh
+        cd ~/.ssh
+        ssh-keygen -C cam2tensorflow
         ssh cam2tensorflow@35.204.288.58
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
