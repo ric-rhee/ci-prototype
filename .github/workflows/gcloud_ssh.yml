@@ -21,7 +21,7 @@ jobs:
       id: vars
       run: |
         BRANCH_NAME=$(echo ${GITHUB_REF##*/})
-        REPO_NAME=$(echo ${{ github.event.repository.name }} | tr -d '\r')
+        REPO_NAME=$(echo ${{ github.event.repository.name }})
         echo ${REPO_NAME}
         echo ${GITHUB_REPOSITORY}
 
@@ -34,7 +34,7 @@ jobs:
       run: |
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && git clone git://github.com/${GITHUB_REPOSITORY}.git && ls"
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ${REPO_NAME}/tf-models"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd '${REPO_NAME}/tf-models'"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
 
 #        gcloud compute scp --recurse tf-models cam2tensorflow@${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
