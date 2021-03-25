@@ -1,0 +1,22 @@
+name: SSH into VM with gcloud ssh
+on: [push]
+jobs:
+  build:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ secrets.PROJECT_ID }}
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT }}
+
+    - name: Start instace
+      run: |
+        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
+        ls
