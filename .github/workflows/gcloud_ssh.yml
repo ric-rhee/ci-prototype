@@ -34,7 +34,7 @@ jobs:
       run: |
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && git clone git://github.com/${GITHUB_REPOSITORY}.git && ls"
-        echo ${REPO_NAME}
+        REPO_NAME=$(echo ${{ github.event.repository.name }})
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ${REPO_NAME}/tf-models"
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
 
