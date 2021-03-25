@@ -18,6 +18,6 @@ jobs:
 
     - name: Start instace
       run: |
-        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing"
+        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing && python3 -m pip install pytest pytest-cov"
         gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html"
