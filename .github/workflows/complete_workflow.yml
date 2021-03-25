@@ -1,0 +1,2 @@
+name: Complete workflow demo
+on: [pull_request]

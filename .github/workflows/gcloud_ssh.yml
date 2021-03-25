@@ -18,10 +18,11 @@ jobs:
 
     - name: Extract branch name
       shell: bash
+      id: vars
       run: |
         echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
         echo ${{ steps.vars.outputs.short_ref }}
-      id: extract_branch
+        echo HELLO
 
     - name: Start instace
       run: |
