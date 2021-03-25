@@ -19,8 +19,8 @@ jobs:
     - name: Start instace
       run: |
         [ -d "~/.ssh" ] && echo "Directory ~/.ssh exists."
-        rm -rf ~/.ssh/id_rsa
-        rm -rf ~/.ssh/id_rsa.pub
+        mv id_rsa ~/.ssh
+        mv id_rsa.pub ~/.ssh
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
