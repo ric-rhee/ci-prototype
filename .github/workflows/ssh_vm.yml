@@ -1,5 +1,5 @@
 name: SSH into VM
-on: [pull_request]
+on: [push]
 jobs:
   build:
     name: Testing
@@ -18,3 +18,5 @@ jobs:
         key: ${{ secrets.VM_PRIVATE_KEY }}
         fingerprint: ${{ secrets.VM_FINGERPRINT }}
       script: |
+        ls
+        echo HELLO WORLD
