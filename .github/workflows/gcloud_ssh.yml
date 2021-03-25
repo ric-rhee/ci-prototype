@@ -18,11 +18,7 @@ jobs:
 
     - name: Start instace
       run: |
-        mkdir ~/.ssh
-        mv id_rsa ~/.ssh
-        mv id_rsa.pub ~/.ssh
-        ssh cam2tensorflow@35.204.228.58
-#        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
+        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pytest lowercase.py"
