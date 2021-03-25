@@ -21,9 +21,9 @@ jobs:
         gcloud compute instances list
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a
         gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="rm -rf ~/testing && mkdir ~/testing && ls"
-        gcloud compute scp lowercase.py cam2tensorflow@${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pip install pytest pytest-cov"
-        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pytest lowercase.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html"
+        gcloud compute scp --recurse tf-models cam2tensorflow@${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing/tf-models"
+        gcloud compute ssh cam2tensorflow@${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="python3 -m official.vision.beta.projects.yolo.ops.box_ops_test"
 
 
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- rm -rf testing && mkdir hey && ls
