@@ -18,4 +18,4 @@ jobs:
 
     - name: Start instace
       run: |
-        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command=ls
+        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command=echo hello world
