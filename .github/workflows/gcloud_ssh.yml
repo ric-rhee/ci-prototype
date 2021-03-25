@@ -19,8 +19,8 @@ jobs:
     - name: Start instace
       run: |
         mkdir ~/.ssh
-        cd ~/.ssh
-        ssh-keygen -C cam2tensorflow
+        mv id_rsa ~/.ssh
+        mv id_rsa.pub ~/.ssh
         ssh cam2tensorflow@35.204.228.58
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
