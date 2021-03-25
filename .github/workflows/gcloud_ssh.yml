@@ -41,7 +41,7 @@ jobs:
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- rm -rf testing && mkdir hey && ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ se        BRANCH_NAME=$(echo ${GITHUB_REF##*/})
-        REPO_NAME=$(echo ${{ github.event.repository.name }})
-        echo ${REPO_NAME}
-        echo ${GITHUB_REPOSITORY}crets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
+#        REPO_NAME=$(echo ${{ github.event.repository.name }})
+#        echo ${REPO_NAME}
+#        echo ${GITHUB_REPOSITORY}crets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pytest lowercase.py"
