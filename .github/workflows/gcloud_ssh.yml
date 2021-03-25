@@ -18,6 +18,7 @@ jobs:
 
     - name: Start instace
       run: |
+        gcloud compute instances list
         gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- rm -rf testing && mkdir hey && ls
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
