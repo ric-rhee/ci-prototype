@@ -28,4 +28,4 @@ jobs:
 #        gcloud compute instances list
 #        gcloud compute project-info describe --project ${{ secrets.PROJECT_ID }}
 #        gcloud compute regions list
-#        gcloud compute zones list
+# #       gcloud compute zones list
