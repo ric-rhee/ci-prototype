@@ -21,7 +21,8 @@ jobs:
         [ -d "~/.ssh" ] && echo "Directory ~/.ssh exists."
         mv google_compute_engine ~/.ssh
         mv google_compute_engine.pub ~/.ssh
-        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
-        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
+        ssh cam2tensorflow@35.204.288.58
+#        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- ls
+#        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a -- mkdir ~/testing
 #        gcloud compute scp lowercase.py ${{ secrets.INSTANCE_NAME }}:~/testing --zone=europe-west4-a
 #        gcloud compute ssh ${{ secrets.INSTANCE_NAME }} --zone=europe-west4-a --command="cd ~/testing && python3 -m pytest lowercase.py"
